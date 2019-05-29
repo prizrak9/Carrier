@@ -1,5 +1,17 @@
 version: '3'
 services:
+  authapi:
+    build:
+      context: .
+      dockerfile: frontend.dockerfile
+    image: authapi:3.0.100-preview5-011568
+    ports:
+      - "8001:80"
+    working_dir: /app
+    volumes: 
+      - ./AuthApi:/app
+    command: bash -c "tail -F anything"
+
   frontend:
     build:
       context: .
@@ -12,3 +24,4 @@ services:
       - ./Frontend:/app
     command: bash -c "tail -F anything"
     # command: bash -c "dotnet new blazor -o . && dotnet build && tail -F anything"
+  
