@@ -1,0 +1,14 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.dockerfile
+    image: blazor:3.0.100-preview5-011568
+    ports:
+      - "8000:80"
+    working_dir: /app
+    volumes:
+      - ./Frontend:/app
+    command: bash -c "tail -F anything"
+    # command: bash -c "dotnet new blazor -o . && dotnet build && tail -F anything"
